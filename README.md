@@ -70,10 +70,41 @@ PINECONE_REGION=us-east-1
 
 ## Usage
 
-1. Prepare your product inventory CSV file
+1. Prepare your medical data CSV file
 2. Run the main script:
 ```bash
 python main.py
+```
+
+## Medical Data CSV Explanation
+
+This document explains the structure and content of the `medical_data.csv` file, which contains medical records for 25 patients. The data includes various fields such as patient ID, name, age, gender, diagnosis, treatment, notes, BP (blood pressure) readings, and glucose readings.
+
+### CSV Structure
+
+The CSV file has the following columns:
+
+- `patient_id`: A unique identifier for each patient.
+- `name`: The name of the patient.
+- `age`: The age of the patient.
+- `gender`: The gender of the patient (M for male, F for female).
+- `diagnosis`: The medical diagnosis for the patient.
+- `treatment`: The prescribed treatment for the diagnosis.
+- `notes`: Additional notes regarding the patient's condition or treatment.
+- `bp_reading`: The blood pressure reading of the patient (in the format systolic/diastolic).
+- `glucose_reading`: The glucose reading of the patient (in mg/dL).
+
+### Sample Data
+
+Here is a sample of the data in the CSV file:
+
+```csv
+patient_id,name,age,gender,diagnosis,treatment,notes,bp_reading,glucose_reading
+1,John Doe,45,M,Hypertension,Medication,Regular check-ups needed,140/90,110
+2,Jane Smith,30,F,Diabetes,Insulin therapy,Monitor blood sugar levels,120/80,180
+3,Michael Brown,50,M,Asthma,Inhaler,Use inhaler as needed,130/85,95
+4,Emily Davis,25,F,Anemia,Iron supplements,Increase iron intake,110/70,100
+5,David Wilson,60,M,Arthritis,Physical therapy,Exercise regularly,135/88,105
 ```
 
 ## Package Details
