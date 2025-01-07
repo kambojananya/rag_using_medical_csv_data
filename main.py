@@ -1,13 +1,3 @@
-# product_inventory.csv
-"""
-product_id,name,description,price,stock,category
-1,Laptop Pro X,15-inch laptop with 16GB RAM and 512GB SSD,1299.99,45,Electronics
-2,Wireless Earbuds,Noise-cancelling bluetooth earbuds with 24hr battery,149.99,120,Electronics
-3,Coffee Maker,12-cup programmable coffee maker,79.99,85,Appliances
-4,Yoga Mat,Premium non-slip exercise mat,29.99,200,Fitness
-5,Gaming Chair,Ergonomic gaming chair with lumbar support,249.99,30,Furniture
-"""
-
 # main.py
 from pinecone import Pinecone, ServerlessSpec
 from langchain.vectorstores import Pinecone as PineconeVectorStore
@@ -30,24 +20,6 @@ azure_endpoint = os.getenv('AZURE_ENDPOINT')
 azure_api_key = os.getenv('AZURE_OPENAI_API_KEY')
 azure_embeddings_endpoint = os.getenv('AZURE_EMBEDDINGS_ENDPOINT')
 azure_embeddings_api_key = os.getenv('AZURE_EMBEDDINGS_API_KEY')
-
-def create_dummy_csv():
-    data = {
-        'product_id': range(1, 6),
-        'name': ['Laptop Pro X', 'Wireless Earbuds', 'Coffee Maker', 'Yoga Mat', 'Gaming Chair'],
-        'description': [
-            '15-inch laptop with 16GB RAM and 512GB SSD',
-            'Noise-cancelling bluetooth earbuds with 24hr battery',
-            '12-cup programmable coffee maker',
-            'Premium non-slip exercise mat',
-            'Ergonomic gaming chair with lumbar support'
-        ],
-        'price': [1299.99, 149.99, 79.99, 29.99, 249.99],
-        'stock': [45, 120, 85, 200, 30],
-        'category': ['Electronics', 'Electronics', 'Appliances', 'Fitness', 'Furniture']
-    }
-    df = pd.DataFrame(data)
-    df.to_csv('product_inventory.csv', index=False)
 
 def clean_text(text: str) -> str:
     cleaned = ' '.join(text.split())
@@ -223,11 +195,16 @@ def main():
     
     # Example queries
     queries = [
-        "What electronics products are in stock?",
-        "Which product has the lowest price?",
-        "How many items are in the Furniture category?",
-        "What is the total value of all electronics in stock?",
-        "List all products with stock levels below 50 units"
+        "Which patients have high blood pressure?",
+        "Who has diabetes according to the records?",
+        "Identify patients with pre-diabetes based on glucose readings.",
+        "What is the BP reading for a patient diagnosed with heart disease?",
+        "What is the glucose reading for a patient with diabetes?",
+        "What is the recommended treatment for hypertension?",
+        "How should diabetes be managed according to the records?",
+        "What are the notes for a patient diagnosed with asthma?",
+        "Which patient is undergoing rehabilitation therapy for a stroke?",
+        "What is the prescribed treatment for chronic fatigue syndrome?
     ]
     
     # Run queries
