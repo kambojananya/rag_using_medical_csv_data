@@ -4,6 +4,8 @@
 ![LangChain](https://img.shields.io/badge/langchain-0.1.0-orange)
 ![Pinecone](https://img.shields.io/badge/pinecone-latest-yellow)
 ![Azure OpenAI](https://img.shields.io/badge/Azure%20OpenAI-2024--05--01--preview-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Last Commit](https://img.shields.io/github/last-commit/kambojananya/rag_using_medical_csv_data)
 
 A Retrieval-Augmented Generation (RAG) system for medical data (patient data) using LangChain, Pinecone, and Azure OpenAI.
 
