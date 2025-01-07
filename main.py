@@ -1,4 +1,3 @@
-# main.py
 from pinecone import Pinecone, ServerlessSpec
 from langchain.vectorstores import Pinecone as PineconeVectorStore
 from langchain_openai import AzureOpenAIEmbeddings
@@ -21,15 +20,72 @@ azure_api_key = os.getenv('AZURE_OPENAI_API_KEY')
 azure_embeddings_endpoint = os.getenv('AZURE_EMBEDDINGS_ENDPOINT')
 azure_embeddings_api_key = os.getenv('AZURE_EMBEDDINGS_API_KEY')
 
+def create_dummy_csv():
+    data = {
+        'patient_id': range(1, 26),
+        'name': [
+            'John Doe', 'Jane Smith', 'Michael Brown', 'Emily Davis', 'David Wilson',
+            'Sarah Johnson', 'James Lee', 'Laura Martinez', 'Robert Garcia', 'Linda Rodriguez',
+            'William Hernandez', 'Barbara Clark', 'Richard Lewis', 'Patricia Walker', 'Charles Hall',
+            'Jennifer Allen', 'Christopher Young', 'Ashley King', 'Matthew Wright', 'Elizabeth Scott',
+            'Joshua Green', 'Jessica Adams', 'Daniel Baker', 'Melissa Nelson', 'Andrew Carter'
+        ],
+        'age': [
+            45, 30, 50, 25, 60, 35, 40, 55, 65, 28,
+            70, 50, 45, 60, 35, 25, 55, 30, 40, 50,
+            60, 35, 45, 30, 55
+        ],
+        'gender': [
+            'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F',
+            'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F',
+            'M', 'F', 'M', 'F', 'M'
+        ],
+        'diagnosis': [
+            'Hypertension', 'Diabetes', 'Asthma', 'Anemia', 'Arthritis',
+            'Allergies', 'Back Pain', 'Heart Disease', 'Cholesterol', 'Migraine',
+            'Osteoporosis', 'Thyroid Disorder', 'Depression', 'Glaucoma', 'Obesity',
+            'Anxiety', 'Prostate Cancer', 'Sinusitis', 'Insomnia', 'Menopause',
+            'Parkinson\'s Disease', 'Chronic Fatigue Syndrome', 'GERD', 'PCOS', 'Stroke'
+        ],
+        'treatment': [
+            'Medication', 'Insulin therapy', 'Inhaler', 'Iron supplements', 'Physical therapy',
+            'Antihistamines', 'Pain relief medication', 'Medication', 'Statins', 'Pain relief medication',
+            'Calcium supplements', 'Thyroid medication', 'Antidepressants', 'Eye drops', 'Diet and exercise',
+            'Anti-anxiety medication', 'Surgery', 'Antibiotics', 'Sleep aids', 'Hormone therapy',
+            'Medication', 'Energy management', 'Antacids', 'Hormonal treatment', 'Rehabilitation therapy'
+        ],
+        'notes': [
+            'Regular check-ups needed', 'Monitor blood sugar levels', 'Use inhaler as needed', 'Increase iron intake', 'Exercise regularly',
+            'Avoid allergens', 'Physical therapy recommended', 'Healthy diet and exercise', 'Monitor cholesterol levels', 'Avoid triggers',
+            'Weight-bearing exercises', 'Regular blood tests', 'Counseling recommended', 'Regular eye exams', 'Weight management program',
+            'Stress management techniques', 'Follow-up appointments', 'Rest and hydration', 'Good sleep hygiene', 'Regular check-ups',
+            'Physical therapy', 'Regular exercise', 'Avoid spicy foods', 'Regular check-ups', 'Monitor blood pressure'
+        ],
+        'bp_reading': [
+            '140/90', '120/80', '130/85', '110/70', '135/88',
+            '115/75', '125/80', '145/95', '130/80', '120/75',
+            '140/85', '125/78', '135/90', '120/80', '130/85',
+            '115/70', '135/88', '120/75', '125/80', '130/85',
+            '140/90', '115/75', '130/85', '120/80', '145/95'
+        ],
+        'glucose_reading': [
+            110, 180, 95, 100, 105,
+            90, 85, 115, 100, 95,
+            110, 105, 100, 95, 110,
+            90, 105, 100, 95, 105,
+            110, 90, 100, 95, 115
+        ]
+    }
+    df = pd.DataFrame(data)
+    df.to_csv('medical_data.csv', index=False)
+
 def clean_text(text: str) -> str:
     cleaned = ' '.join(text.split())
-    cleaned = cleaned.replace('electronics', 'Electronics')
-    cleaned = cleaned.replace('appliances', 'Appliances')
     return cleaned
 
 def enrich_content(content: str, metadata: Dict[str, Any]) -> str:
-    if 'category' in metadata:
-        content = f"Category: {metadata['category']} - {content}"
+    if 'diagnosis' in metadata:
+        content = f"Diagnosis: {metadata['diagnosis']} - {content}"
     return content
 
 def format_numerical_data(content: str) -> str:
@@ -63,7 +119,6 @@ def transform_documents(documents: List[Document]) -> List[Document]:
         transformed_docs.append(transformed_doc)
     
     return transformed_docs
-
 
 def initialize_pinecone():
     pinecone_api_key = os.getenv('PINECONE_API_KEY')
@@ -114,8 +169,8 @@ def initialize_vectorstore(splits, embeddings):
 def load_and_process_data(embeddings):
     # Load CSV
     loader = CSVLoader(
-        file_path='product_inventory.csv',
-        source_column='product_id'
+        file_path='medical_data.csv',
+        source_column='patient_id'
     )
     documents = loader.load()   
    
@@ -181,8 +236,6 @@ def main():
     
     print("Index stats:", index.describe_index_stats())
 
-
-    
     # Upsert documents
     vectorstore = PineconeVectorStore(
             index=index,
@@ -204,7 +257,7 @@ def main():
         "How should diabetes be managed according to the records?",
         "What are the notes for a patient diagnosed with asthma?",
         "Which patient is undergoing rehabilitation therapy for a stroke?",
-        "What is the prescribed treatment for chronic fatigue syndrome?
+        "What is the prescribed treatment for chronic fatigue syndrome?"
     ]
     
     # Run queries
@@ -215,4 +268,5 @@ def main():
         #print("Sources:", [doc.metadata['source'] for doc in response["source_documents"]])
 
 if __name__ == "__main__":
-    main()
+    main()    
+  
