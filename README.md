@@ -162,14 +162,6 @@ graph LR
 
 ## Development
 
-### Adding New Products
-
-1. Update the CSV file with new products
-2. Run the script to update vectors:
-```bash
-python update_inventory.py
-```
-
 ### Modifying Transformers
 
 Edit the transformer functions in `main.py`:
