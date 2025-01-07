@@ -1,0 +1,26 @@
+patient_id,name,age,gender,diagnosis,treatment,notes,bp_reading,glucose_reading
+1,John Doe,45,M,Hypertension,Medication,Regular check-ups needed,140/90,110
+2,Jane Smith,30,F,Diabetes,Insulin therapy,Monitor blood sugar levels,120/80,180
+3,Michael Brown,50,M,Asthma,Inhaler,Use inhaler as needed,130/85,95
+4,Emily Davis,25,F,Anemia,Iron supplements,Increase iron intake,110/70,100
+5,David Wilson,60,M,Arthritis,Physical therapy,Exercise regularly,135/88,105
+6,Sarah Johnson,35,F,Allergies,Antihistamines,Avoid allergens,115/75,90
+7,James Lee,40,M,Back Pain,Pain relief medication,Physical therapy recommended,125/80,85
+8,Laura Martinez,55,F,Heart Disease,Medication,Healthy diet and exercise,145/95,115
+9,Robert Garcia,65,M,Cholesterol,Statins,Monitor cholesterol levels,130/80,100
+10,Linda Rodriguez,28,F,Migraine,Pain relief medication,Avoid triggers,120/75,95
+11,William Hernandez,70,M,Osteoporosis,Calcium supplements,Weight-bearing exercises,140/85,110
+12,Barbara Clark,50,F,Thyroid Disorder,Thyroid medication,Regular blood tests,125/78,105
+13,Richard Lewis,45,M,Depression,Antidepressants,Counseling recommended,135/90,100
+14,Patricia Walker,60,F,Glaucoma,Eye drops,Regular eye exams,120/80,95
+15,Charles Hall,35,M,Obesity,Diet and exercise,Weight management program,130/85,110
+16,Jennifer Allen,25,F,Anxiety,Anti-anxiety medication,Stress management techniques,115/70,90
+17,Christopher Young,55,M,Prostate Cancer,Surgery,Follow-up appointments,135/88,105
+18,Ashley King,30,F,Sinusitis,Antibiotics,Rest and hydration,120/75,100
+19,Matthew Wright,40,M,Insomnia,Sleep aids,Good sleep hygiene,125/80,95
+20,Elizabeth Scott,50,F,Menopause,Hormone therapy,Regular check-ups,130/85,105
+21,Joshua Green,60,M,Parkinson's Disease,Medication,Physical therapy,140/90,110
+22,Jessica Adams,35,F,Chronic Fatigue Syndrome,Energy management,Regular exercise,115/75,90
+23,Daniel Baker,45,M,GERD,Antacids,Avoid spicy foods,130/85,100
+24,Melissa Nelson,30,F,PCOS,Hormonal treatment,Regular check-ups,120/80,95
+25,Andrew Carter,55,M,Stroke,Rehabilitation therapy,Monitor blood pressure,145/95,115
